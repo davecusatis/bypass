@@ -1,5 +1,6 @@
 package com.example.bypass.app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,32 +18,29 @@ public class MainActivity extends Activity {
     private ArrayAdapter<String> mAdapter;
     private CharSequence mTitle;
 
+    private final String[] bars = new String[] {"The Den", "The Phyrst", "Bar Bleu"};
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // removes top "action" bar -- for now, leaving it
+        // ActionBar actionBar = getActionBar();
+        // actionBar.hide();
+
+        // set the adapter and populate the list
         mList   = (ListView) findViewById(R.id.mBarList);
         mTitle  = "bypass";
 
-        mAdapter = new ArrayAdapter<String>(this, R.id.mBarList);
+        // eventually pull this info from DB
+
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bars);
         mList.setAdapter(mAdapter);
 
-        populateAdapter();
 
 
 
-    }
 
-    private void populateAdapter()
-    {
-        // eventually pull this info from DB,
-        ArrayList<String> bars = new ArrayList<String>();
-        bars.add("The Den");
-        bars.add("The Phyrst");
-        bars.add("Mad Mex");
-
-        mAdapter = new ArrayAdapter<String>(this, R.id.mBarList, bars);
-        mAdapter.addAll(bars);
     }
 
     @Override
