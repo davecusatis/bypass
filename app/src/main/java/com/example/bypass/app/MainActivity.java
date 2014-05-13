@@ -2,16 +2,23 @@ package com.example.bypass.app;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 
 public class MainActivity extends Activity {
+
     private final String TAG = MainActivity.class.getSimpleName();
 
     private ListView mList;
@@ -30,6 +37,17 @@ public class MainActivity extends Activity {
 
         // set the adapter and populate the list
         mList   = (ListView) findViewById(R.id.mBarList);
+        mList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO: honestly i wrote this while drunk, so i can't guarentee it works.
+                Intent barClickedIntent = new Intent(MainActivity.this, IndividualBarActivity.class);
+                barClickedIntent.putExtra("name", mAdapter.getItem(position));     // i don't think v.id works, fyi
+                MainActivity.this.startActivity(barClickedIntent);
+            }
+        });
+
+
         mTitle  = "bypass";
 
         // eventually pull this info from DB
@@ -39,9 +57,8 @@ public class MainActivity extends Activity {
 
 
 
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
