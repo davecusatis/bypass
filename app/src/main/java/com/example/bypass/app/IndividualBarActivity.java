@@ -5,10 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.lang.reflect.Array;
 
 
 public class IndividualBarActivity extends Activity {
+
+    private CharSequence mTitle;
+    private ArrayAdapter<CharSequence> timeSpinnerAdapter;
+    private ArrayAdapter<String> passSpinnerAdapter;
+    private Spinner timeSpinner;
+    private Spinner passSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +26,22 @@ public class IndividualBarActivity extends Activity {
         setContentView(R.layout.activity_individual_bar);
 
         Intent barClickedIntent = getIntent();
+        String barName = barClickedIntent.getStringExtra("name");
+        BypassUtil.BarData bar = BypassUtil.getSpecialFromName(barName);
         TextView mainText = (TextView) findViewById(R.id.barNameView);
-        mainText.setText(barClickedIntent.getStringExtra("name"));
+
+        mainText.setText(bar.toString());
+
+        timeSpinner = (Spinner) findViewById(R.id.timeslot_spinner);
+        passSpinner = (Spinner) findViewById(R.id.pass_spinner);
+
+
+        timeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.time_spinner_data, android.R.layout.simple_spinner_dropdown_item);
+        timeSpinner.setAdapter(timeSpinnerAdapter);
+
+        passSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, BypassUtil.availablePasses);
+        passSpinner.setAdapter(passSpinnerAdapter);
+
     }
 
 

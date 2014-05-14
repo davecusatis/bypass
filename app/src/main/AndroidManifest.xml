@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name="com.example.bypass.app.IndividualBarActivity"
-            android:label="@string/title_activity_individual_bar"
+            android:label="Bar Info"
             android:parentActivityName="com.example.bypass.app.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

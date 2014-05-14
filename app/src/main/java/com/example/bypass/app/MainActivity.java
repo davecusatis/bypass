@@ -25,7 +25,11 @@ public class MainActivity extends Activity {
     private ArrayAdapter<String> mAdapter;
     private CharSequence mTitle;
 
-    private final String[] bars = new String[] {"The Den", "The Phyrst", "Bar Bleu"};
+
+
+
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +40,16 @@ public class MainActivity extends Activity {
         // actionBar.hide();
 
         // set the adapter and populate the list
+
+        BypassUtil.fillTable();        //TODO: remember to change
+
         mList   = (ListView) findViewById(R.id.mBarList);
         mList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO: honestly i wrote this while drunk, so i can't guarentee it works.
                 Intent barClickedIntent = new Intent(MainActivity.this, IndividualBarActivity.class);
-                barClickedIntent.putExtra("name", mAdapter.getItem(position));     // i don't think v.id works, fyi
+                barClickedIntent.putExtra("name", mAdapter.getItem(position));
                 MainActivity.this.startActivity(barClickedIntent);
             }
         });
@@ -52,7 +59,7 @@ public class MainActivity extends Activity {
 
         // eventually pull this info from DB
 
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bars);
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, BypassUtil.getBarNames());
         mList.setAdapter(mAdapter);
 
 

@@ -9,9 +9,35 @@
     tools:context="com.example.bypass.app.IndividualBarActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="@string/bar"
+        android:textSize="24dp"
         android:id="@+id/barNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bypass the Line"
+        android:id="@+id/Bypass_the_Line"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp" />
+
+    <Spinner
+        android:id="@+id/timeslot_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barNameView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/pass_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeslot_spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
