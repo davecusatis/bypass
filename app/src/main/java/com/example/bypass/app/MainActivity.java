@@ -41,13 +41,14 @@ public class MainActivity extends Activity {
 
         // set the adapter and populate the list
 
-        BypassUtil.fillTable();        //TODO: remember to change
+        BypassUtil.fillTable();        //TODO: remember to change, "sync database" - type function
 
         mList   = (ListView) findViewById(R.id.mBarList);
         mList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO: honestly i wrote this while drunk, so i can't guarentee it works.
+                // sober comment: it does in fact work, the confusion was at the mAdapter.getItem call, wasn't sure what it'd return
                 Intent barClickedIntent = new Intent(MainActivity.this, IndividualBarActivity.class);
                 barClickedIntent.putExtra("name", mAdapter.getItem(position));
                 MainActivity.this.startActivity(barClickedIntent);

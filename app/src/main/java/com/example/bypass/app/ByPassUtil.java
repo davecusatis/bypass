@@ -40,7 +40,7 @@ public class BypassUtil
     }
     //-----------------------------------------------------
 
-    public static BarData getSpecialFromName(String name)
+    public static BarData getDataFromName(String name)
     {
         return barTable.get(name);
     }

@@ -14,4 +14,7 @@
         <item>1:00 AM - $5</item>
     </string-array>
 
+    <string name="title_activity_transaction">TransactionActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

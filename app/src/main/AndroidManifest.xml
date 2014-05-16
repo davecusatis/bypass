@@ -24,6 +24,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
+        <activity
+            android:name="com.example.bypass.app.TransactionActivity"
+            android:label="Bypass the Line"
+            android:parentActivityName=".IndividualBarActivity">
+        <!-- android:parentActivityName="com.example.bypass.app.IndividualBarActivity" >
+         <meta-data
+             android:name="android.support.PARENT_ACTIVITY"
+             android:value="IndividualBarActivity" /> -->
+        </activity>
     </application>
 
 </manifest>

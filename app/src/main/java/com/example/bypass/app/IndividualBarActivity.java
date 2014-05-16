@@ -1,24 +1,33 @@
 package com.example.bypass.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 
 
 public class IndividualBarActivity extends Activity {
 
-    private CharSequence mTitle;
     private ArrayAdapter<CharSequence> timeSpinnerAdapter;
     private ArrayAdapter<String> passSpinnerAdapter;
     private Spinner timeSpinner;
     private Spinner passSpinner;
+    private BypassUtil.BarData bar;
+    private TextView nameText;
+    private TextView specialText;
+    private Button bypassButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +36,78 @@ public class IndividualBarActivity extends Activity {
 
         Intent barClickedIntent = getIntent();
         String barName = barClickedIntent.getStringExtra("name");
-        BypassUtil.BarData bar = BypassUtil.getSpecialFromName(barName);
-        TextView mainText = (TextView) findViewById(R.id.barNameView);
 
-        mainText.setText(bar.toString());
-
+        nameText = (TextView) findViewById(R.id.barNameView);
+        specialText = (TextView) findViewById(R.id.barSpecialView);
         timeSpinner = (Spinner) findViewById(R.id.timeslot_spinner);
         passSpinner = (Spinner) findViewById(R.id.pass_spinner);
+        bypassButton = (Button) findViewById(R.id.bypassButton);
 
+        bar = BypassUtil.getDataFromName(barName);
+
+        nameText.setText(bar.getName());
+        specialText.setText(bar.getSpecials());
 
         timeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.time_spinner_data, android.R.layout.simple_spinner_dropdown_item);
         timeSpinner.setAdapter(timeSpinnerAdapter);
 
         passSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, BypassUtil.availablePasses);
         passSpinner.setAdapter(passSpinnerAdapter);
+
+
+
+        bypassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String timeSelected = "";
+                String numPassesSelected = "";
+
+                try {
+
+                    timeSelected = timeSpinner.getSelectedItem().toString();
+                    numPassesSelected = passSpinner.getSelectedItem().toString();
+                }catch(NullPointerException e)
+                {
+                    Toast t = Toast.makeText(getApplicationContext(), "null selection" , Toast.LENGTH_SHORT );
+                }
+
+                Intent buttonClickedIntent = new Intent(IndividualBarActivity.this, TransactionActivity.class);
+
+                if(timeSelected != "" && numPassesSelected != "")
+                {
+                    buttonClickedIntent.putExtra("name", bar.getName());
+                    buttonClickedIntent.putExtra("time", timeSelected);
+                    buttonClickedIntent.putExtra("passes", numPassesSelected);
+                    IndividualBarActivity.this.startActivity(buttonClickedIntent);
+                }
+                else if (numPassesSelected != "")               // todo: additional logic may be needed for figuring is passes available
+                {
+                    new AlertDialog.Builder(IndividualBarActivity.this)
+                            .setTitle("Invalid number of passes selected!")
+                            .setMessage("Please select a valid number of passes.")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // TODO: sync return to activity
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+                else
+                {
+                    new AlertDialog.Builder(IndividualBarActivity.this)
+                            .setTitle("Invalid time selected!")
+                            .setMessage("Please select a valid time.")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // TODO: sync return to activity
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+            }
+        });
 
     }
 
