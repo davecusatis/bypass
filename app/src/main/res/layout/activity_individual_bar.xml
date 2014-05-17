@@ -27,9 +27,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bypass the Line"
-        android:id="@+id/bypassButton"
-        android:layout_centerVertical="true"
+        android:text="Checkout"
+        android:id="@+id/checkoutButton"
+        android:layout_below="@+id/timeslot_spinner"
         android:layout_centerHorizontal="true" />
 
     <Spinner
@@ -47,7 +47,6 @@
         android:layout_below="@+id/barSpecialView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
 
 
 </RelativeLayout>

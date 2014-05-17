@@ -27,7 +27,7 @@ public class IndividualBarActivity extends Activity {
     private BypassUtil.BarData bar;
     private TextView nameText;
     private TextView specialText;
-    private Button bypassButton;
+    private Button checkoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class IndividualBarActivity extends Activity {
         specialText = (TextView) findViewById(R.id.barSpecialView);
         timeSpinner = (Spinner) findViewById(R.id.timeslot_spinner);
         passSpinner = (Spinner) findViewById(R.id.pass_spinner);
-        bypassButton = (Button) findViewById(R.id.bypassButton);
+        checkoutButton = (Button) findViewById(R.id.checkoutButton);
 
         bar = BypassUtil.getDataFromName(barName);
 
@@ -56,7 +56,7 @@ public class IndividualBarActivity extends Activity {
 
 
 
-        bypassButton.setOnClickListener(new View.OnClickListener() {
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String timeSelected = "";

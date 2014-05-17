@@ -9,8 +9,78 @@
     tools:context="com.example.bypass.app.TransactionActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="@string/bar"
+        android:textSize="24dp"
+        android:id="@+id/barNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="bar special"
+        android:id="@+id/barSpecialView"
+        android:layout_below="@+id/barNameView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Reciept"
+        android:id="@+id/recieptTextView"
+        android:layout_below="@+id/barSpecialView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/creditCardInput"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/securityCodeTextView"
+        android:layout_alignParentLeft="true"
+        android:text="XXXXXXXXXXXXXXXX" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/SecurityCodeInput"
+        android:layout_alignTop="@+id/creditCardInput"
+        android:layout_toRightOf="@+id/creditCardInput"
+        android:text="XXX" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Credit Card"
+        android:id="@+id/creditCardTextView"
+        android:layout_below="@+id/recieptTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Security Code"
+        android:id="@+id/securityCodeTextView"
+        android:layout_alignTop="@+id/creditCardTextView"
+        android:layout_toRightOf="@+id/creditCardInput" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bypass the Line"
+        android:id="@+id/bypassButton"
+        android:layout_below="@+id/creditCardInput"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
