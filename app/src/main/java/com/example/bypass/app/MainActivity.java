@@ -12,7 +12,6 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -24,12 +23,6 @@ public class MainActivity extends Activity {
     private ListView mList;
     private ArrayAdapter<String> mAdapter;
     private CharSequence mTitle;
-
-
-
-
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +40,7 @@ public class MainActivity extends Activity {
         mList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: honestly i wrote this while drunk, so i can't guarentee it works.
+                // TODO: honestly i wrote this while drunk, so i can't guarentee it works.
                 // sober comment: it does in fact work, the confusion was at the mAdapter.getItem call, wasn't sure what it'd return
                 Intent barClickedIntent = new Intent(MainActivity.this, IndividualBarActivity.class);
                 barClickedIntent.putExtra("name", mAdapter.getItem(position));

@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.lang.reflect.Array;
 
 
@@ -48,13 +47,13 @@ public class IndividualBarActivity extends Activity {
         nameText.setText(bar.getName());
         specialText.setText(bar.getSpecials());
 
+        // TODO: Add big ass number of passes available for the current time slot
+
         timeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.time_spinner_data, android.R.layout.simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(timeSpinnerAdapter);
+        timeSpinner.        setAdapter(timeSpinnerAdapter);
 
         passSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, BypassUtil.availablePasses);
         passSpinner.setAdapter(passSpinnerAdapter);
-
-
 
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
