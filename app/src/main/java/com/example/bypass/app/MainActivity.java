@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,10 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -34,6 +39,15 @@ public class MainActivity extends Activity {
 
         // set the adapter and populate the list
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        Parse.initialize(MainActivity.this, "zx8os7JoAf2K1R8lhfreu4n0zdh2ZROBUZimQzCY", "NW9PSVaM3ycGjyPxXiQXdEqGfKm9GosnVVdr1hBa");
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo","BALLZ");
+        testObject.saveInBackground();
+
         BypassUtil.fillTable();        //TODO: remember to change, "sync database" - type function
 
         mList   = (ListView) findViewById(R.id.mBarList);
@@ -55,6 +69,7 @@ public class MainActivity extends Activity {
 
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, BypassUtil.getBarNames());
         mList.setAdapter(mAdapter);
+
 
 
 
